@@ -13,3 +13,8 @@ label {
     margin-left: 1em;
     margin-right: 0.25em;
 }
+
+label.required:after {
+    content: "*";
+    color: red;
+} 

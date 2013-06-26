@@ -18,11 +18,23 @@
     <ui:define name="content">
         <h:form>
             <div class="titulo-form">INSCRIÇÃO CONFIRMADA</div>
-            Prezado(a) #{inscricaoBean.candidato.nome},
-            Seguem os dados da sua insrição
-            Idioma escolhido: #{inscricaoBean.candidato.idioma.descricao}
-            CPF: #{inscricaoBean.candidato.cpf}
-            Data e hora: #{inscricaoBean.candidato.dataHora}
+            <h:panelGroup style="text-align: left; margin-bottom: 10px;" layout="block">
+                <h:panelGroup styleClass="form-block" layout="block">
+                    <h:outputText value="Prezado(a) #{inscricaoBean.candidato.nome},"/>
+                </h:panelGroup>
+                <h:panelGroup styleClass="form-block" layout="block">
+                    <h:outputText value="Seguem os dados da sua insrição"/>
+                </h:panelGroup>
+                <h:panelGroup styleClass="form-block" layout="block">
+                    <h:outputText value="Idioma escolhido: #{inscricaoBean.candidato.idioma.descricao}"/>
+                </h:panelGroup>
+                <h:panelGroup styleClass="form-block" layout="block">
+                    <h:outputText value="CPF: #{inscricaoBean.candidato.cpf}"/>
+                </h:panelGroup>
+                <h:panelGroup styleClass="form-block" layout="block">
+                    <h:outputText value="Data e hora: #{inscricaoBean.candidato.dataHora}"/>
+                </h:panelGroup>
+            </h:panelGroup>
             <h:commandButton value="Voltar" action="inscricao"/>
             <h:messages/>
         </h:form>
