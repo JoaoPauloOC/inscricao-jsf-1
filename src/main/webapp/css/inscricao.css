@@ -1,0 +1,15 @@
+.titulo-form {
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.form-block {
+    margin-bottom: 0.25em;
+}
+
+label {
+    font-size: 10pt;
+    margin-left: 1em;
+    margin-right: 0.25em;
+}
