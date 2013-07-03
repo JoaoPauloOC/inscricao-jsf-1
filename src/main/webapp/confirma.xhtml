@@ -35,7 +35,8 @@
                     <h:outputText value="Data e hora: #{inscricaoBean.candidato.dataHora}"/>
                 </h:panelGroup>
             </h:panelGroup>
-            <h:commandButton value="Voltar" action="inscricao"/>
+            <h:commandButton value="Voltar" action="#{inscricaoBean.voltaAction}"/>
+            <h:commandButton value="Alterar" action="#{inscricaoBean.alteraAction}"/>
             <h:messages/>
         </h:form>
     </ui:define>

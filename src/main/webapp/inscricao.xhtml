@@ -27,7 +27,7 @@
                 </h:panelGroup>
                 <h:panelGroup styleClass="form-block" layout="block">
                     <h:outputLabel for="cpf" value="CPF" styleClass="required"/>
-                    <h:inputText id="cpf" value="#{inscricaoBean.candidato.cpf}" label="CPF" size="15" required="true"/>
+                    <h:inputText id="cpf" value="#{inscricaoBean.candidato.cpf}" label="CPF" size="15" required="true" disabled="#{inscricaoBean.alteracao}"/>
                     <h:outputLabel for="rg" value="RG" styleClass="required"/>
                     <h:inputText id="rg" value="#{inscricaoBean.candidato.rg}" size="25" label="RG" maxlength="20" required="true"/>
                 </h:panelGroup>

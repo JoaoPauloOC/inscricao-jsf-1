@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import utfpr.faces.support.PageBean;
 
@@ -15,8 +15,10 @@ import utfpr.faces.support.PageBean;
  * @author Wilson
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class InscricaoBean extends PageBean {
+
+    private boolean alteracao = false;
     private static final Idioma[] idiomas = {
         new Idioma(1, "Inglês"),
         new Idioma(2, "Alemão"),
@@ -32,6 +34,14 @@ public class InscricaoBean extends PageBean {
     public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
     }
+    
+    public boolean isAlteracao() {
+        return alteracao;
+    }
+
+    public void setAlteracao(boolean alteracao) {
+        this.alteracao = alteracao;
+    }
 
     public List<SelectItem> getIdiomaItemList() {
         if (idiomaItemList != null) return idiomaItemList;
@@ -43,8 +53,32 @@ public class InscricaoBean extends PageBean {
     }
 
     public String confirmaAction() {
-        candidato.setDataHora(new Date());
-        candidato.setIdioma(idiomas[candidato.getIdioma().getCodigo()-1]);
-        return "confirma";
+        if(alteracao){
+            alteracao = false;
+            candidato.setDataHora(new Date());
+            candidato.setIdioma(idiomas[candidato.getIdioma().getCodigo()-1]);
+            return "confirma";
+        } else {
+            InscricoesBean ins = (InscricoesBean) getBean("inscricoesBean");
+            if(ins.existeCpf(candidato.getCpf())){
+                error("Cpf já encontrado!");
+                return null;
+            }
+            ins.getCandidatos().add(candidato);
+            candidato.setDataHora(new Date());
+            candidato.setIdioma(idiomas[candidato.getIdioma().getCodigo()-1]);
+            return "confirma";
+        }
     }
+    
+    public String alteraAction(){
+        alteracao = true;      
+        return "inscricao";
+    }
+    
+    public String voltaAction(){
+        candidato = new Candidato(idiomas[0]);
+        return "inscricao";
+    }
+    
 }
