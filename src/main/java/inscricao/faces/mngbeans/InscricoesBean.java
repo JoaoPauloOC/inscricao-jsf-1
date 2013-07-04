@@ -28,12 +28,8 @@ public class InscricoesBean  {
         candidatos = new ArrayList<Candidato>();
     }
 
-    public ArrayList<Candidato> getCandidatos() {
-        return candidatos;
-    }
-
-    public void setCandidatos(ArrayList<Candidato> candidatos) {
-        this.candidatos = candidatos;
+    public void adicionar(Candidato c){
+        candidatos.add(c);
     }
     
     public boolean existeCpf(long cpf){

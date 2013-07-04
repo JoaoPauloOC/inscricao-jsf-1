@@ -19,6 +19,7 @@ import utfpr.faces.support.PageBean;
 public class InscricaoBean extends PageBean {
 
     private boolean alteracao = false;
+    private String texto = "Confirmar inscrição";
     private static final Idioma[] idiomas = {
         new Idioma(1, "Inglês"),
         new Idioma(2, "Alemão"),
@@ -42,6 +43,14 @@ public class InscricaoBean extends PageBean {
     public void setAlteracao(boolean alteracao) {
         this.alteracao = alteracao;
     }
+    
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 
     public List<SelectItem> getIdiomaItemList() {
         if (idiomaItemList != null) return idiomaItemList;
@@ -55,6 +64,7 @@ public class InscricaoBean extends PageBean {
     public String confirmaAction() {
         if(alteracao){
             alteracao = false;
+            texto = "Confirmar inscrição";
             candidato.setDataHora(new Date());
             candidato.setIdioma(idiomas[candidato.getIdioma().getCodigo()-1]);
             return "confirma";
@@ -64,7 +74,7 @@ public class InscricaoBean extends PageBean {
                 error("Cpf já encontrado!");
                 return null;
             }
-            ins.getCandidatos().add(candidato);
+            ins.adicionar(candidato);
             candidato.setDataHora(new Date());
             candidato.setIdioma(idiomas[candidato.getIdioma().getCodigo()-1]);
             return "confirma";
@@ -72,12 +82,20 @@ public class InscricaoBean extends PageBean {
     }
     
     public String alteraAction(){
-        alteracao = true;      
+        alteracao = true;
+        texto = "Alterar inscrição";
         return "inscricao";
     }
     
     public String voltaAction(){
         candidato = new Candidato(idiomas[0]);
+        return "inscricao";
+    }
+    
+    public String novaInscricaoAction(){
+        candidato = new Candidato(idiomas[0]);
+        alteracao = false;
+        texto = "Confirmar inscrição";
         return "inscricao";
     }
     

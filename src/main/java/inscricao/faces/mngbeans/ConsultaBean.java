@@ -40,6 +40,7 @@ public class ConsultaBean extends PageBean {
             InscricaoBean ins2 = (InscricaoBean) getBean("inscricaoBean");
             ins2.setCandidato(c);
             ins2.setAlteracao(true);
+            ins2.setTexto("Alterar inscrição");
             return "inscricao";
         }
         return null;
