@@ -42,7 +42,7 @@ public class LoginBean {
     
     public String confirmaAction() {
         if(login.equals("admin") && senha.equals("admin")){
-            return "inscricao";
+            return "menu";
         }
         return null;
     }
