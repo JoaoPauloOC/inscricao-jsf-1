@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./WEB-INF/templates/layout.xhtml">
+
+    <ui:define name="styles">
+        <link href="./css/inscricao.css" rel="stylesheet" type="text/css" />
+    </ui:define>
+
+    <ui:define name="metadata">
+    </ui:define>
+
+    <ui:define name="javascript">
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <div class="titulo-form">Candidatos cadastrados</div>
+            <h:panelGroup style="text-align: left; margin-bottom: 10px;" layout="block">
+                <h:panelGroup styleClass="form-block" layout="block">
+                    <h:dataTable value="#{inscricoesBean.candidatoDataModel}" var="candidato">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="CPF"/>
+                            </f:facet>
+                            <h:outputText value="#{candidato.cpf}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{candidato.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Idioma"/>
+                            </f:facet>
+                            <h:outputText value="#{candidato.idioma.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cidade"/>
+                            </f:facet>
+                            <h:outputText value="#{candidato.cidade}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Estado"/>
+                            </f:facet>
+                            <h:outputText value="#{candidato.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{inscricoesBean.editarAction}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Excluir" action="#{inscricoesBean.excluirAction}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+            </h:panelGroup>
+            <h:messages/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
